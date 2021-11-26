@@ -3,7 +3,7 @@
 (def transaction-1 {:id       :transaction-1
                     :date     "12/07/2020"
                     :amount   1000
-                    :merchant "Restaurante do Zezin"
+                    :merchant "Parquinho"
                     :category "Alimentacao"})
 
 (def transaction-2 {:id       :transaction-2
