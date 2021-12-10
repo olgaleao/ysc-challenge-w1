@@ -4,9 +4,11 @@
 
 (s/set-fn-validation! true)
 
+(def Date #"\d{2}/\d{2}/\d{4}")
+
 (def Transaction
   {:id       y.model/PosInt
-   :date     (s/constrained s/Str y.model/validate-date)
+   :date     Date
    :amount   y.model/PosInt
    :merchant s/Str
    :category s/Str})
@@ -15,31 +17,31 @@
   [Transaction])
 
 (def transaction-1 {:id       1
-                    :date     "2021-06-01T13:11:32"
+                    :date     "01/06/2021"
                     :amount   1000
                     :merchant "Parquinho"
                     :category "Alimentacao"})
 
 (def transaction-2 {:id       2
-                    :date     "2021-06-13T13:11:32"
+                    :date     "01/06/2021"
                     :amount   25000
                     :merchant "Loja de Roupas"
                     :category "Vestiario"})
 
 (def transaction-3 {:id       3
-                    :date     "2021-06-01T13:11:32"
+                    :date     "01/06/2021"
                     :amount   2500
                     :merchant "Farmácia Sul"
                     :category "Saude"})
 
 (def transaction-4 {:id       4
-                    :date     "2021-06-01T13:11:32"
+                    :date     "01/06/2021"
                     :amount   3000
                     :merchant "Restaurante do Tio"
                     :category "Alimentacao"})
 
 (def transaction-5 {:id       5
-                    :date     "2021-06-01T13:11:32"
+                    :date     "01/06/2021"
                     :amount   4000
                     :merchant "Loja de Roupas"
                     :category "Lazer"})
