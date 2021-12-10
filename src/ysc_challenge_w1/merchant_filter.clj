@@ -1,9 +1,14 @@
 (ns ysc-challenge-w1.merchant-filter
-  (:require [ysc-challenge-w1.transactions :as y.transactions]))
+  (:require [schema.core :as s]
+            [ysc-challenge-w1.transactions :as y.transactions]))
 
-(def transactions (y.transactions/transactions))
+(s/set-fn-validation! true)
 
-(defn merchant-filter [transaction merchant-input]
+(def transactions (y.transactions/list-transactions))
+
+(s/defn merchant-filter
+  [transaction :- y.transactions/Transaction
+   merchant-input :- s/Str]
   (let [merchant (get transaction :merchant 0)]
     (when (= merchant merchant-input)
       (println transaction))))

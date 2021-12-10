@@ -1,9 +1,15 @@
 (ns ysc-challenge-w1.amount-filter
-  (:require [ysc-challenge-w1.transactions :as y.transactions]))
+  (:require [schema.core :as s]
+            [ysc-challenge-w1.transactions :as y.transactions]
+            [ysc-challenge-w1.model :as y.model]))
 
-(def transactions (y.transactions/transactions))
+(s/set-fn-validation! true)
 
-(defn amount-filter [transaction amount-input]
+(def transactions (y.transactions/list-transactions))
+
+(s/defn amount-filter
+  [transaction :- y.transactions/Transaction
+   amount-input :- y.model/PosInt]
   (let [amount (get transaction :amount 0)]
     (when (= amount amount-input)
       (println transaction))))

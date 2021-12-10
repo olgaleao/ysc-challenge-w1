@@ -6,19 +6,18 @@
 
 (s/set-fn-validation! true)
 
-(def transactions (y.transactions/transactions))
+(def Summary [{:category s/Str
+               :amount   y.model/PosInt}])
 
-(s/defn transaction-amount
-  [transaction :- y.model/Transaction]
-  (get transaction :amount 0))
+(def transactions (y.transactions/list-transactions))
 
 (defn amount-by-category
   [[category category-transactions]]
   {:category category
-   :amount   (reduce + (map transaction-amount category-transactions))})
+   :amount   (reduce + (map :amount category-transactions))})
 
-(s/defn summary-by-category
-  [transactions :- y.model/Transactions]
+(s/defn summary-by-category :- Summary
+  [transactions :- y.transactions/Transactions]
   (->> transactions
        (group-by :category)
        (map amount-by-category)))
