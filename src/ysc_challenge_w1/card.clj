@@ -9,11 +9,13 @@
 (def Expiration-Date #"\d{2}/\d{4}")
 
 (s/defn new-card
-  [number :- CardNumber
+  [uuid :- s/Uuid
+   number :- CardNumber
    cvv :- Cvv
    expiration-date :- Expiration-Date
    limit :- y.model/PosInt]
-  {:card/card-number     number
+  {:card/id              uuid
+   :card/card-number     number
    :card/cvv             cvv
    :card/expiration-date expiration-date
    :card/limit           limit})

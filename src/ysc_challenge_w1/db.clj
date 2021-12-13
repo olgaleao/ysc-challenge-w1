@@ -10,7 +10,11 @@
 (defn delete-db! []
   (d/delete-database db-uri))
 
-(def schema [{:db/ident       :card/card-number
+(def schema [{:db/ident       :card/id
+              :db/valueType   :db.type/uuid
+              :db/cardinality :db.cardinality/one
+              :db/unique      :db.unique/identity}
+             {:db/ident       :card/card-number
               :db/valueType   :db.type/string
               :db/cardinality :db.cardinality/one
               :db/doc         "Card number with 16 digits"}
@@ -27,6 +31,10 @@
               :db/cardinality :db.cardinality/one
               :db/doc         "Card limit (cents)"}
 
+             {:db/ident       :client/id
+              :db/valueType   :db.type/uuid
+              :db/cardinality :db.cardinality/one
+              :db/unique      :db.unique/identity}
              {:db/ident       :client/name
               :db/valueType   :db.type/string
               :db/cardinality :db.cardinality/one

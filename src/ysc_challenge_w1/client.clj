@@ -7,9 +7,11 @@
 (def Cpf #"\d{11}")
 
 (s/defn new-client
-  [name :- s/Str
+  [uuid :- s/Uuid
+   name :- s/Str
    email :- s/Str
    cpf :- Cpf]
-  {:client/name  name
+  {:client/id    uuid
+   :client/name  name
    :client/email email
    :client/cpf   cpf})
