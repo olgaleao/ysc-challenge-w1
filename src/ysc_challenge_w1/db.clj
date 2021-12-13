@@ -23,7 +23,7 @@
               :db/cardinality :db.cardinality/one
               :db/doc         "Expiration date (mm/YYYY)"}
              {:db/ident       :card/limit
-              :db/valueType   :db.type/bigint
+              :db/valueType   :db.type/long
               :db/cardinality :db.cardinality/one
               :db/doc         "Card limit (cents)"}
 
@@ -45,7 +45,7 @@
               :db/cardinality :db.cardinality/one
               :db/doc         "Transaction date (DD/mm/YYY)"}
              {:db/ident       :transaction/amount
-              :db/valueType   :db.type/bigint
+              :db/valueType   :db.type/long
               :db/cardinality :db.cardinality/one
               :db/doc         "Transaction amaount (cents)"}
              {:db/ident       :transaction/merchant
@@ -68,3 +68,7 @@
 
 (defn add-transactions! [conn transaction-list]
   (d/transact conn transaction-list))
+
+(defn transactions! [db]
+  (d/q '[:find (pull ?entity [*])
+         :where [?entity :transaction/amount]], db))
