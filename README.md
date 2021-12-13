@@ -1,6 +1,6 @@
-# ysc-challenge-w1
+# ysc-challenge-w2
 
-A Clojure library designed to ... well, that part is up to you.
+Desafio da Semana 2 Bootcamp Yes She Codes
 
 ## Usage
 
