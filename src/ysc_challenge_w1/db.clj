@@ -25,7 +25,7 @@
              {:db/ident       :card/limit
               :db/valueType   :db.type/bigint
               :db/cardinality :db.cardinality/one
-              :db/doc         "Card limit (in cents)"}
+              :db/doc         "Card limit (cents)"}
 
              {:db/ident       :client/name
               :db/valueType   :db.type/string
@@ -38,7 +38,24 @@
              {:db/ident       :client/cpf
               :db/valueType   :db.type/string
               :db/cardinality :db.cardinality/one
-              :db/doc         "Client's cpf (11 digits)"}])
+              :db/doc         "Client's cpf (11 digits)"}
+
+             {:db/ident       :transaction/date
+              :db/valueType   :db.type/string
+              :db/cardinality :db.cardinality/one
+              :db/doc         "Transaction date (DD/mm/YYY)"}
+             {:db/ident       :transaction/amount
+              :db/valueType   :db.type/bigint
+              :db/cardinality :db.cardinality/one
+              :db/doc         "Transaction amaount (cents)"}
+             {:db/ident       :transaction/merchant
+              :db/valueType   :db.type/string
+              :db/cardinality :db.cardinality/one
+              :db/doc         "Transaction merchant"}
+             {:db/ident       :transaction/category
+              :db/valueType   :db.type/string
+              :db/cardinality :db.cardinality/one
+              :db/doc         "Transaction category"}])
 
 (defn set-schema! [conn]
   (d/transact conn schema))
@@ -49,4 +66,5 @@
 (defn add-cards! [conn card-list]
   (d/transact conn card-list))
 
-;TO-DO definir as funcoes de adicionar no banco etc etc etc
+(defn add-transactions! [conn transaction-list]
+  (d/transact conn transaction-list))

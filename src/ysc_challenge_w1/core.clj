@@ -3,7 +3,8 @@
   (:require [datomic.api :as d]
             [ysc-challenge-w1.db :as db]
             [ysc-challenge-w1.client :as y.client]
-            [ysc-challenge-w1.card :as y.card]))
+            [ysc-challenge-w1.card :as y.card]
+            [ysc-challenge-w1.transactions :as y.transactions]))
 
 (def conn (db/open-connection!))
 
@@ -17,4 +18,6 @@
 (def cards [card-1])
 (db/add-cards! conn cards)
 
-
+(def transaction-1 (y.transactions/new-transaction! ("01/06/2021" 1000 "Parquinho" "Alimentacao")))
+(def transactions [transaction-1])
+(db/add-transactions! conn transactions)
