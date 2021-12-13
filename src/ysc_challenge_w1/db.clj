@@ -40,6 +40,10 @@
               :db/cardinality :db.cardinality/one
               :db/doc         "Client's cpf (11 digits)"}
 
+             {:db/ident       :transaction/id
+              :db/valueType   :db.type/uuid
+              :db/cardinality :db.cardinality/one
+              :db/unique      :db.unique/identity}
              {:db/ident       :transaction/date
               :db/valueType   :db.type/string
               :db/cardinality :db.cardinality/one
@@ -71,4 +75,4 @@
 
 (defn transactions! [db]
   (d/q '[:find (pull ?entity [*])
-         :where [?entity :transaction/amount]], db))
+         :where [?entity :transaction/id]], db))

@@ -7,11 +7,13 @@
 (def Date #"\d{2}/\d{2}/\d{4}")
 
 (s/defn new-transaction!
-  [date :- Date
+  [uuid :- s/Uuid
+   date :- Date
    amount :- y.model/PosInt
    merchant :- s/Str
    category :- s/Str]
-  {:transaction/date     date
+  {:transaction/id       uuid
+   :transaction/date     date
    :transaction/amount   amount
    :transaction/merchant merchant
    :transaction/category category})

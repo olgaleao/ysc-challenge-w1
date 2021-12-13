@@ -2,6 +2,7 @@
   (:use clojure.pprint)
   (:require [datomic.api :as d]
             [ysc-challenge-w1.db :as db]
+            [ysc-challenge-w1.model :as y.model]
             [ysc-challenge-w1.client :as y.client]
             [ysc-challenge-w1.card :as y.card]
             [ysc-challenge-w1.transactions :as y.transactions]))
@@ -18,10 +19,10 @@
 (def cards [card-1])
 (db/add-cards! conn cards)
 
-(def transaction-1 (y.transactions/new-transaction! "01/06/2021" 1000 "Parquinho" "Lazer"))
-(def transaction-2 (y.transactions/new-transaction! "12/06/2021" 75000 "Loja de Roupas" "Vestimenta"))
-(def transaction-3 (y.transactions/new-transaction! "01/06/2021" 7000 "Supermercado" "Alimentacao"))
-(def transaction-4 (y.transactions/new-transaction! "01/06/2021" 9800 "Restaurante" "Alimentacao"))
+(def transaction-1 (y.transactions/new-transaction! (y.model/uuid) "01/06/2021" 1000 "Parquinho" "Lazer"))
+(def transaction-2 (y.transactions/new-transaction! (y.model/uuid) "12/06/2021" 75000 "Loja de Roupas" "Vestimenta"))
+(def transaction-3 (y.transactions/new-transaction! (y.model/uuid) "01/06/2021" 7000 "Supermercado" "Alimentacao"))
+(def transaction-4 (y.transactions/new-transaction! (y.model/uuid) "01/06/2021" 9800 "Restaurante" "Alimentacao"))
 (def transactions [transaction-1 transaction-2 transaction-3 transaction-4])
 (db/add-transactions! conn transactions)
 
