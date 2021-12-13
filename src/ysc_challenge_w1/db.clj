@@ -43,6 +43,10 @@
 (defn set-schema! [conn]
   (d/transact conn schema))
 
+(defn add-clients! [conn client-list]
+  (d/transact conn client-list))
 
+(defn add-cards! [conn card-list]
+  (d/transact conn card-list))
 
 ;TO-DO definir as funcoes de adicionar no banco etc etc etc
